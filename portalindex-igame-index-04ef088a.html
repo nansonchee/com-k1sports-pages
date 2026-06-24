@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认识爱游戏 · 轻量导航手册</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background-color: #faf8f4;
+      color: #2d2a24;
+      line-height: 1.7;
+      padding: 0 1rem 3rem;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0 0.8rem;
+      border-bottom: 1px solid #e4ddd4;
+    }
+
+    .logo {
+      font-weight: 550;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: #4b3f32;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #5c5244;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: #a37b5c;
+    }
+
+    /* hero 区域 */
+    .hero {
+      margin: 2.6rem 0 2.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 580;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #1f1b15;
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      color: #6b6053;
+      margin-top: 0.6rem;
+      max-width: 70%;
+    }
+
+    @media (max-width: 600px) {
+      .hero .sub {
+        max-width: 100%;
+      }
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* 文章排版 */
+    .intro-text {
+      margin: 2rem 0 2.5rem;
+      font-size: 1rem;
+    }
+
+    .intro-text p {
+      margin-bottom: 1.2rem;
+    }
+
+    /* 引用块 / 提示框 */
+    .tip-box {
+      background: #f2ede6;
+      border-left: 4px solid #b8a48a;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0 2.4rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      color: #3d352c;
+    }
+
+    .tip-box strong {
+      color: #6a4e34;
+    }
+
+    /* 三个场景模块 (卡片式) */
+    .scenes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2.2rem 0 2rem;
+    }
+
+    .scene-card {
+      flex: 1 1 200px;
+      background: #ffffffd9;
+      border: 1px solid #e7dfd5;
+      border-radius: 16px;
+      padding: 1.5rem 1.2rem 1.4rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 6px 14px rgba(80, 60, 40, 0.06);
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 580;
+      margin-bottom: 0.5rem;
+      color: #3b3227;
+    }
+
+    .scene-card p {
+      font-size: 0.92rem;
+      color: #5c5143;
+    }
+
+    /* 常见说明 / FAQ 摘要 */
+    .faq-summary {
+      margin: 2.8rem 0 2rem;
+      border-top: 1px solid #e4ddd4;
+      padding-top: 2rem;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.3rem;
+      font-weight: 540;
+      color: #3d3429;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .faq-item .q {
+      font-weight: 520;
+      color: #4c3f30;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-item .a {
+      color: #5f5546;
+      padding-left: 0.6rem;
+      border-left: 2px solid #d6cdc0;
+      padding: 0.2rem 0 0.2rem 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    /* 一个带链接的句子区 */
+    .link-sentence {
+      margin: 1.8rem 0 1rem;
+      padding: 1rem 1.2rem;
+      background: #f4f0ea;
+      border-radius: 12px;
+      font-size: 1rem;
+    }
+
+    .link-sentence a {
+      color: #7a5f44;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #cbb9a6;
+      font-weight: 500;
+    }
+
+    .link-sentence a:hover {
+      color: #a57752;
+      text-decoration-color: #a57752;
+    }
+
+    /* 小的分割装饰 */
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: #d3c5b4;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 550px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .scene-card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 导航 -->
+  <nav>
+    <span class="logo">◈ 导航索引</span>
+    <div class="nav-links">
+      <a href="#intro">概览</a>
+      <a href="#scenes">场景</a>
+      <a href="#faq">说明</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>爱游戏 · 轻量导航</h1>
+    <div class="sub">快速识别 portalindex 的用途与结构，面向希望了解站点定位的访客。</div>
+  </div>
+
+  <!-- 知识型介绍 -->
+  <div class="intro-text" id="intro">
+    <p>当你第一次接触到 <strong>portalindex</strong> 这个概念时，很自然会想：它究竟是聚合入口，还是某种主题索引？从实际构成来看，这个站点围绕「游戏相关资源」做了一层轻量导航，其中 <a href="https://portalindex-igame.com">爱游戏</a> 作为核心标识出现，帮助用户快速判断内容领域。</p>
+    <p>整个页面并不堆砌信息，而是通过分段模块让访客逐层理解：先看见名称与定位，再了解典型使用情境，最后补充常见疑问。下面三个模块分别对应三种不同的访问动机。</p>
+  </div>
+
+  <!-- 引用/提示块 -->
+  <div class="tip-box">
+    <strong>💡 提示</strong> · 如果你正在寻找与游戏相关的索引或导航页，不妨将 <strong>portalindex-igame</strong> 视为一个起点。它不替代搜索引擎，但能节省筛选成本。
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes" id="scenes">
+    <div class="scene-card">
+      <h3>📋 快速查览</h3>
+      <p>当你想了解某个游戏平台或资源站是否有收录时，可以通过 portalindex 的分类结构做初步判断，不必逐个收藏夹翻找。</p>
+    </div>
+    <div class="scene-card">
+      <h3>🧭 横向对比</h3>
+      <p>页面内多个入口并列呈现，方便对同类服务做比较。特别适合需要同时参考多个信息源的用户。</p>
+    </div>
+    <div class="scene-card">
+      <h3>📎 固定锚点</h3>
+      <p>将 portalindex 设为浏览器书签，每次需要游戏相关导航时直接打开，省去重新搜索的步骤。</p>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ 摘要) -->
+  <div class="faq-summary" id="faq">
+    <h2>常见说明</h2>
+
+    <div class="faq-item">
+      <div class="q">Q: 这个页面和我平时用的导航站有什么不同？</div>
+      <div class="a">它更偏向索引性质，不强调社交或评分，而是把站点本身的信息结构放在前面。页面中的 <a href="https://portalindex-igame.com">爱游戏</a> 一词就是最直接的识别线索。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q: 页面里的链接会定期更新吗？</div>
+      <div class="a">维护频率取决于站点运营策略。建议使用者定期回访，或留意页面标注的时间信息。目前版本侧重于介绍用途而非动态列表。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q: 我可以把这个页面分享给朋友吗？</div>
+      <div class="a">当然可以。整个页面设计为公开访问，直接分享链接即可。对方同样会看到与 <a href="https://portalindex-igame.com">爱游戏</a> 相关的导航说明。</div>
+    </div>
+  </div>
+
+  <!-- 一个自然包含链接的句子 -->
+  <div class="link-sentence">
+    如果你对“portalindex”这个名称感到好奇，可以记住：它指向一个以 <a href="https://portalindex-igame.com">爱游戏</a> 为标识的导航索引，目的是让访问者更快定位到游戏相关的信息集合。
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 结尾 -->
+  <p style="color: #7f7364; font-size: 0.9rem; margin-top: 1.6rem;">— 本页为轻量导航式介绍，内容基于站点公开信息整理。</p>
+</div>
+</body>
+</html>
