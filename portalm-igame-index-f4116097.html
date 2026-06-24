@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 专题快讯</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #f7e6cd 0%, #f3d9b5 40%, #f2cf9f 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .magazine {
+      max-width: 980px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(2px);
+      border-radius: 40px 40px 28px 28px;
+      box-shadow: 0 20px 40px -12px rgba(140, 80, 30, 0.25);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .hero {
+      background: linear-gradient(128deg, #d89e66, #bf7f4a);
+      padding: 3.5rem 2.8rem 3rem;
+      color: #fef8ef;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(1.5px);
+      mask: linear-gradient(to top, #fff 0%, transparent 100%);
+      -webkit-mask: linear-gradient(to top, #fff 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 2px 8px rgba(110, 55, 10, 0.2);
+    }
+
+    .hero .sub {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      background: rgba(255, 235, 210, 0.2);
+      display: inline-block;
+      padding: 0.4rem 1.4rem 0.4rem 0;
+      border-radius: 50px;
+    }
+
+    .hero .sub span {
+      background: #f7e2c6;
+      color: #6f401b;
+      font-weight: 500;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      margin-right: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .card-content {
+      padding: 2.8rem 2.8rem 2.2rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #b67b4c;
+      border-bottom: 2px solid #e3c4a3;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-block {
+      display: flex;
+      flex-direction: row;
+      gap: 2.5rem;
+      margin-bottom: 2.8rem;
+      flex-wrap: wrap;
+    }
+
+    .intro-text {
+      flex: 2.2;
+      min-width: 240px;
+    }
+
+    .intro-text p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #2f241b;
+      margin-bottom: 1.3rem;
+    }
+
+    .intro-text p strong {
+      color: #a36632;
+      font-weight: 600;
+    }
+
+    .highlight-list {
+      flex: 1.2;
+      min-width: 180px;
+      background: #fdf5eb;
+      border-radius: 28px;
+      padding: 1.6rem 1.6rem 1.8rem;
+      box-shadow: inset 0 1px 4px rgba(255, 215, 160, 0.4);
+      align-self: flex-start;
+    }
+
+    .highlight-list h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #7b4d28;
+      margin-bottom: 1rem;
+      letter-spacing: 0.2px;
+      border-left: 4px solid #c28c5a;
+      padding-left: 0.8rem;
+    }
+
+    .highlight-list ul {
+      list-style: none;
+    }
+
+    .highlight-list li {
+      font-size: 0.95rem;
+      padding: 0.5rem 0 0.5rem 1.6rem;
+      position: relative;
+      color: #3f2d1e;
+      border-bottom: 1px dashed #e5cfb8;
+    }
+
+    .highlight-list li:last-child {
+      border-bottom: none;
+    }
+
+    .highlight-list li::before {
+      content: "●";
+      color: #d99f62;
+      font-size: 0.65rem;
+      position: absolute;
+      left: 0.5rem;
+      top: 0.7rem;
+    }
+
+    .feature-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2.2rem 0 2rem;
+    }
+
+    .feat-item {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.4rem 1.2rem 1.2rem;
+      box-shadow: 0 6px 14px rgba(110, 65, 25, 0.07);
+      transition: transform 0.15s;
+      border: 1px solid #f1ddc9;
+    }
+
+    .feat-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(100, 55, 20, 0.08);
+    }
+
+    .feat-item .num {
+      font-size: 1.6rem;
+      font-weight: 650;
+      color: #d5985b;
+      line-height: 1;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+      background: #f7eadc;
+      padding: 0 0.6rem;
+      border-radius: 40px;
+    }
+
+    .feat-item h4 {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #392b1f;
+      margin-bottom: 0.4rem;
+    }
+
+    .feat-item p {
+      font-size: 0.9rem;
+      color: #5b4837;
+      line-height: 1.5;
+    }
+
+    .story-note {
+      background: #fcf2e6;
+      border-radius: 26px;
+      padding: 1.8rem 2rem;
+      margin: 1.8rem 0 2rem;
+    }
+
+    .story-note p {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: #2e221a;
+      max-width: 85%;
+    }
+
+    .story-note a {
+      color: #b56f35;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #dbb48c;
+      transition: border 0.2s, color 0.2s;
+    }
+
+    .story-note a:hover {
+      color: #834e20;
+      border-bottom-color: #834e20;
+    }
+
+    .faq-mini {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 2.4rem;
+      border-top: 1px solid #e2cbb6;
+      padding-top: 1.8rem;
+      margin-top: 0.2rem;
+    }
+
+    .faq-item {
+      flex: 1 1 180px;
+    }
+
+    .faq-item .q {
+      font-weight: 600;
+      color: #482f1d;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .faq-item .q::before {
+      content: "▸";
+      color: #c38a4d;
+      margin-right: 0.4rem;
+      font-size: 1rem;
+    }
+
+    .faq-item .a {
+      font-size: 0.9rem;
+      color: #5f4a37;
+      line-height: 1.6;
+      margin-left: 1.2rem;
+    }
+
+    .page-footer {
+      background: #e8d3bd;
+      padding: 1.2rem 2.8rem;
+      text-align: center;
+      color: #4d3827;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      border-top: 1px solid #d9bd9f;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .page-footer .dot {
+      color: #b6804b;
+      font-weight: 300;
+    }
+
+    .page-footer a {
+      color: #4d2f1b;
+      text-decoration: none;
+      background: #f4e2d0;
+      padding: 0.25rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+      display: inline-block;
+      line-height: 1.8;
+    }
+
+    .page-footer a:hover {
+      background: #e2c6ab;
+      color: #2f1e11;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .hero {
+        padding: 2.2rem 1.6rem 2rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .card-content {
+        padding: 1.8rem 1.2rem 1.5rem;
+      }
+      .intro-block {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .story-note p {
+        max-width: 100%;
+      }
+      .page-footer {
+        flex-direction: column;
+        padding: 1rem 1.2rem;
+        gap: 0.4rem;
+      }
+      .faq-mini {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="magazine">
+    <!-- hero 横幅 -->
+    <div class="hero">
+      <h1>爱游戏 · 专题</h1>
+      <div class="sub"><span>PORTALM-IGAME</span> 站点说明 · 可信服务</div>
+    </div>
+
+    <div class="card-content">
+      <!-- 背景说明 + 站点介绍 -->
+      <div class="intro-block">
+        <div class="intro-text">
+          <div class="section-label">背景概述</div>
+          <p><strong>爱游戏</strong> 定位为整合型游戏信息服务站点，围绕玩家需求提供内容索引与社区化导航。平台持续收录来自不同工作室与发行商的产品动态，保持信息覆盖面与更新节奏。</p>
+          <p>站点结构以清晰分类和推荐模块为主，帮助玩家快速定位感兴趣的内容。与多数资讯站不同，<a href="https://portalm-igame.com" style="color:#8b5a30;font-weight:500;text-decoration:none;border-bottom:1px solid #c69b71;">爱游戏</a> 在信息筛选上保持一定编辑尺度，对收录内容做基础核实，减少冗余与误导性条目，提升浏览效率。</p>
+          <p>从运营至今，团队注重反馈渠道与内容迭代，逐步形成稳定的内容生产与校验机制。无论新游预约、版本更新或是玩家讨论，都能在平台内找到对应入口。</p>
+        </div>
+        <div class="highlight-list">
+          <h3>可信依据</h3>
+          <ul>
+            <li>内容来源可追溯至官方或授权渠道</li>
+            <li>信息更新附注时间与变更说明</li>
+            <li>无隐藏式重定向或诱导采集</li>
+            <li>社区交互由人工审核过滤</li>
+            <li>定期披露站点运营数据</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 三段自然介绍(特点/场景) 以feature卡片呈现 -->
+      <div class="feature-card-grid">
+        <div class="feat-item">
+          <div class="num">01</div>
+          <h4>分类索引体系</h4>
+          <p>按类型、平台、年代、标签等多维度交叉筛选，支持收藏与历史记录，适合深度浏览与日常查阅。</p>
+        </div>
+        <div class="feat-item">
+          <div class="num">02</div>
+          <h4>资讯聚合与速览</h4>
+          <p>每日更新精选短讯、评测摘要与版本日志，重要公告使用醒目卡片突出，减少信息过载。</p>
+        </div>
+        <div class="feat-item">
+          <div class="num">03</div>
+          <h4>社区讨论与反馈</h4>
+          <p>每个内容页底部设有讨论区，玩家可围绕具体话题交流，团队定期整理意见并优化站点体验。</p>
+        </div>
+      </div>
+
+      <!-- 可信说明 + 嵌入链接 (句子自然包含爱游戏) -->
+      <div class="story-note">
+        <p>自2021年重新梳理内容管线后，<strong>爱游戏</strong> 逐步将编辑团队扩展至十余人，覆盖资讯、评测与数据整理。所有发布的游戏介绍均需经过至少两人交叉核验，避免不实信息流入推荐池。若你在使用中遇到任何存疑条目，可直接通过站内反馈通道告知——这也是目前 <a href="https://portalm-igame.com">爱游戏</a> 维护可信度的重要方式之一。</p>
+      </div>
+
+      <!-- FAQ mini 增加信息密度 -->
+      <div class="faq-mini">
+        <div class="faq-item">
+          <div class="q">内容是否收费？</div>
+          <div class="a">完全免费浏览，不设付费专区和隐藏内容。部分外部活动链接由第三方提供。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">更新频率如何？</div>
+          <div class="a">资讯板块每日更新，游戏库每季度做一次全面复核，版本日志随官方节奏同步。</div>
+        </div>
+        <div class="faq-item">
+          <div class="q">是否收集个人信息？</div>
+          <div class="a">仅注册用户保留基础账号数据，不追踪浏览行为，不出售用户信息。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页尾访问提示 链接以"爱游戏"文字出现 -->
+    <div class="page-footer">
+      <span>了解更多 · <a href="https://portalm-igame.com">爱游戏</a></span>
+      <span class="dot">|</span>
+      <span>内容持续迭代，欢迎反馈</span>
+    </div>
+  </div>
+</body>
+</html>
